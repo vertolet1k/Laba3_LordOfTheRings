@@ -1,10 +1,17 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package builder;
 
 import com.github.javafaker.Faker;
 import java.util.Random;
 import model.Orc;
 import factory.OrcGearFactory;
-
+/**
+ *
+ * @author vika
+ */
 public class OrkBuilder {
     private static final Random random = new Random();
     private static final Faker faker = new Faker();
@@ -45,23 +52,21 @@ public class OrkBuilder {
         return this;
     }
 
-    // Методы для модификации характеристик в зависимости от племени
     public OrkBuilder asMordorOrc() {
-        int strength = (int)(orc.getStrength() * 1.3); // +30% к силе
+        int strength = (int)(orc.getStrength() * 1.3); 
         orc.setStrength(Math.min(100, strength));
-        orc.setAgility((int)(orc.getAgility() * 0.7)); // Низкая ловкость
+        orc.setAgility((int)(orc.getAgility() * 0.7));
         return this;
     }
 
     public OrkBuilder asMistyMountainsOrc() {
-        int agility = (int)(orc.getAgility() * 1.3); // +30% к ловкости
+        int agility = (int)(orc.getAgility() * 1.3); 
         orc.setAgility(Math.min(100, agility));
-        orc.setIntelligence((int)(orc.getIntelligence() * 0.7)); // Низкий интеллект
+        orc.setIntelligence((int)(orc.getIntelligence() * 0.7)); 
         return this;
     }
 
     public OrkBuilder asDolGuldurOrc() {
-        // Сбалансированные характеристики - оставляем как есть
         return this;
     }
 

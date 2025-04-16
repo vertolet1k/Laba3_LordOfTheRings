@@ -1,7 +1,14 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package builder;
 
 import model.Orc;
-
+/**
+ *
+ * @author vika
+ */
 public class OrcDirector {
     private OrkBuilderFactory builderFactory;
 
@@ -31,11 +38,9 @@ public class OrcDirector {
             .withName(name)
             .withArmor();
         
-        // Разведчики используют лук вместо стандартного оружия
         if (builderFactory instanceof MordorOrkBuilderFactory) {
-            builder.withWeapon(); // У разведчиков Мордора остается стандартное оружие
+            builder.withWeapon(); 
         } else {
-            // Для остальных племен - лук
             Orc orc = builder.build();
             orc.setWeapon("Лук");
             return orc;
