@@ -4,23 +4,21 @@
  */
 package gui;
 
-import javax.swing.*;
-import javax.swing.tree.*;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import model.Orc;
-import builder.OrcDirector;
-import builder.MordorOrkBuilderFactory;
-import builder.DolGuldurOrkBuilderFactory;
-import builder.MistyMountainsOrkBuilderFactory;
 /**
  *
  * @author vika
  */
+
+import builder.*;
+import javax.swing.*;
+import javax.swing.tree.*;
+import java.awt.*;
+import java.util.*;
+import java.util.List;
+
+import model.Orc;
+import model.OrcDirector;
+
 public class OrcArmyGUI extends JFrame {
     private final List<Orc> army = new ArrayList<>();
     private final JTree armyTree;
@@ -31,21 +29,25 @@ public class OrcArmyGUI extends JFrame {
     public OrcArmyGUI() {
         super("Армия Саурона");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 600);
+        setSize(800, 600);
         setLayout(new BorderLayout());
 
+        // Инициализация директоров для каждого племени
         directors = new HashMap<>();
-        directors.put("Мордор", new OrcDirector(new MordorOrkBuilderFactory()));
-        directors.put("Дол Гулдур", new OrcDirector(new DolGuldurOrkBuilderFactory()));
-        directors.put("Мглистые Горы", new OrcDirector(new MistyMountainsOrkBuilderFactory()));
+        directors.put("Мордор", new OrcDirector(new MordorOrcBuilder()));
+        directors.put("Дол Гулдур", new OrcDirector(new DolGuldurOrcBuilder()));
+        directors.put("Мглистые Горы", new OrcDirector(new MistyMountainsOrcBuilder()));
 
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Армия Мордора");
+        // Создание дерева
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Армия Саурона");
         treeModel = new DefaultTreeModel(root);
         armyTree = new JTree(treeModel);
         
+        // Создание информационной панели
         infoPanel = new JTextArea();
         infoPanel.setEditable(false);
 
+        // Добавление компонентов на форму
         JPanel leftPanel = new JPanel(new BorderLayout());
         leftPanel.add(new JScrollPane(armyTree), BorderLayout.CENTER);
         leftPanel.add(createControlPanel(), BorderLayout.SOUTH);
@@ -56,6 +58,7 @@ public class OrcArmyGUI extends JFrame {
 
         add(splitPane, BorderLayout.CENTER);
 
+        // Обработчик выбора в дереве
         armyTree.addTreeSelectionListener(e -> {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode)
                 armyTree.getLastSelectedPathComponent();
@@ -82,9 +85,9 @@ public class OrcArmyGUI extends JFrame {
             OrcDirector director = directors.get(selectedTribe);
             
             Orc newOrc = switch (selectedType) {
-                case "Командир" -> director.createLeaderOrc(null);
-                case "Разведчик" -> director.createScoutOrc(null);
-                default -> director.createBasicOrc(null);
+                case "Командир" -> director.constructLeaderOrc();
+                case "Разведчик" -> director.constructScoutOrc();
+                default -> director.constructBasicOrc();
             };
             
             addOrcToTree(newOrc, selectedTribe);
@@ -92,7 +95,7 @@ public class OrcArmyGUI extends JFrame {
 
         panel.add(new JLabel("Племя:"));
         panel.add(tribeCombo);
-        panel.add(new JLabel("Тип:"));
+//        panel.add(new JLabel("Тип:"));
         panel.add(typeCombo);
         panel.add(addButton);
 
@@ -147,4 +150,4 @@ public class OrcArmyGUI extends JFrame {
             gui.setVisible(true);
         });
     }
-} 
+}

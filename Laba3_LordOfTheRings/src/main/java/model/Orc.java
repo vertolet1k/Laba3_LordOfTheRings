@@ -4,32 +4,21 @@
  */
 package model;
 
-import com.github.javafaker.Faker;
-import java.util.Random;
+
 /**
  *
  * @author vika
  */
+
 public class Orc {
     private String name;
     private String weapon;
     private String armor;
     private String banner;
-    
-    private int strength;      
-    private int agility;      
-    private int intelligence; 
-    private int health;      
-    private int level;
-    private static final Random random = new Random();
-    private static final Faker faker = new Faker();
-
-    public Orc() {
-        this.name = faker.lordOfTheRings().character();
-        this.strength = random.nextInt(10) + 1;
-        this.health = random.nextInt(20) + 10;
-        this.level = 1;
-    }
+    private int strength;
+    private int agility;
+    private int intelligence;
+    private int health;
 
     public String getName() { 
         return name; 
@@ -44,17 +33,16 @@ public class Orc {
         return banner; 
     }
     public int getStrength() { 
-        return strength; }
-    public int getAgility() { return agility; 
+        return strength; 
+    }
+    public int getAgility() { 
+        return agility; 
     }
     public int getIntelligence() { 
         return intelligence; 
     }
     public int getHealth() { 
         return health; 
-    }
-    public int getLevel() { 
-        return level; 
     }
 
     public void setName(String name) { 
@@ -80,23 +68,6 @@ public class Orc {
     }
     public void setHealth(int health) { 
         this.health = health; 
-    }
-
-    public void levelUp() {
-        level++;
-        strength += random.nextInt(3) + 1;
-        health += random.nextInt(5) + 2;
-    }
-
-    public void takeDamage(int damage) {
-        health -= damage;
-        if (health < 0) {
-            health = 0;
-        }
-    }
-
-    public boolean isAlive() {
-        return health > 0;
     }
 
     @Override
