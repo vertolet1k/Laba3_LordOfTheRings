@@ -1,9 +1,16 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package builder;
 
 import model.Orc;
 import com.github.javafaker.Faker;
 import java.util.Random;
-
+/**
+ *
+ * @author vika
+ */
 public abstract class OrcBuilder {
     protected Orc orc;
     protected Random random = new Random();

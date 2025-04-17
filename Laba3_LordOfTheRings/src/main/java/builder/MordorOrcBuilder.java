@@ -1,5 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package builder;
-
+/**
+ *
+ * @author vika
+ */
 public class MordorOrcBuilder extends OrcBuilder {
     @Override
     public OrcBuilder buildName() {
@@ -27,10 +34,10 @@ public class MordorOrcBuilder extends OrcBuilder {
 
     @Override
     public OrcBuilder buildStats() {
-        orc.setStrength(random.nextInt(51) + 50);
-        orc.setAgility(random.nextInt(30) + 1);   
-        orc.setIntelligence(random.nextInt(50) + 1); 
-        orc.setHealth(random.nextInt(101) + 100);  
+        orc.setStrength(random.nextInt(51));
+        orc.setAgility(random.nextInt(30));   
+        orc.setIntelligence(random.nextInt(50)); 
+        orc.setHealth(random.nextInt(101));  
         return this;
     }
 } 

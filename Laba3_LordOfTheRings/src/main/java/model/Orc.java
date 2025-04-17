@@ -3,13 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
-
-
 /**
  *
  * @author vika
  */
-
 public class Orc {
     private String name;
     private String weapon;
@@ -72,7 +69,8 @@ public class Orc {
 
     @Override
     public String toString() {
-        return String.format("Орк %s [Снаряжение: %s, %s, %s] [Характеристики: Сила=%d, Ловкость=%d, Интеллект=%d, Здоровье=%d]",
+        return String.format("Орк %s [Снаряжение: %s, %s, %s] "
+                + "[Характеристики: Сила=%d, Ловкость=%d, Интеллект=%d, Здоровье=%d]",
             name, weapon, armor, banner, strength, agility, intelligence, health);
     }
 } 
